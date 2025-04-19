@@ -6,6 +6,7 @@ import { AuthModal } from '@/components/auth/AuthModal';
 import { CartSidebar } from '@/components/cart/CartSidebar';
 import { InventoryView } from '@/components/inventory/InventoryView';
 import { GameSelector } from '@/components/inventory/GameSelector';
+import { InventoryDisplay } from '@/components/inventory/InventoryDisplay';
 import { LoadingModal } from '@/components/common/LoadingModal';
 import { currencies } from '@/constants/currencies';
 
@@ -130,13 +131,12 @@ function App() {
               onSelect={inventory.setSelectedGame}
             />
 
-            {inventory.showInventory && (
-              <InventoryView
-                items={inventory.items}
+            {inventory.showInventory && auth.user?.steamid && (
+              <InventoryDisplay
+                steamId={auth.user.steamid}
+                selectedGame={inventory.selectedGame}
                 currency={selectedCurrency}
                 onToggleCart={cart.toggleItemInCart(inventory.items, inventory.setItems)}
-                selectedFilter={inventory.selectedFilter}
-                onFilterChange={inventory.setSelectedFilter}
               />
             )}
           </div>

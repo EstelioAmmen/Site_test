@@ -15,4 +15,5 @@ export type InventoryItem = {
   source?: string;
   tradable?: boolean;
   marketable?: boolean;
+  appId?: number;
 };
